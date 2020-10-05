@@ -11,12 +11,12 @@ class Shape(ABC):
             sides = kwargs['sides']
             new = object.__new__(cls._shapes[sides])
         except KeyError:
-            raise ValueError(f'unsupported value for sides')
+            raise ValueError('unsupported value for sides')
         return new
 
     def __init_subclass__(cls, **kwargs):
         sides = kwargs.pop('sides')
-        if cls not in cls._shapes:
+        if sides not in cls._shapes:
             cls._shapes[sides] = cls
 
     def __init__(self, **kwargs):
